@@ -1,35 +1,25 @@
-import './App.css';
-import { MemoryRouter,HashRouter,BrowserRouter, Route, Link } from 'react-router-dom';
-
-const PageOne =()=>{
-  return <div>Page 1-One
-  <hr></hr>
-  <Link to="/pagetwo"> Navigate to Page Two </Link>
-  </div>
-
-}
-
-const PageTwo =()=>{
-  return <div>Page 2-Two
-  <hr></hr>
-  <button>Click Me</button>
-  <Link to="/"> Navigate to Page -1-One-Uno </Link></div>
-  
-
-}
+import "./App.css";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import StreamCreate from "./components/streams/StreamCreate";
+import StreamDelete from "./components/streams/StreamDelete";
+import StreamEdit from "./components/streams/StreamEdit";
+import StreamList from "./components/streams/StreamList";
+import StreamShow from "./components/streams/StreamShow";
 
 function App() {
   return (
-    <div className='container'>
-    <MemoryRouter>
-        <div className='container' >
-
-        <Route path ='/' exact component={PageOne} />
-        <Route path='/pagetwo' component={PageTwo} />
+    <div className="container">
+      <BrowserRouter>
+        <div className="container">
+          <div>
+            <Route path='/' exact component={StreamList} />
+            <Route path='/streams/new' exact component={StreamCreate} />
+            <Route path='/streams/edit' exact component={StreamEdit} />
+            <Route path='/streams/show' exact component={StreamShow} />
+            <Route path='/streams/delete' exact component={StreamDelete} />
+          </div>
         </div>
-
-    </MemoryRouter>
-      
+      </BrowserRouter>
     </div>
   );
 }
