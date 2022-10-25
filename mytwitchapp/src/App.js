@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { MemoryRouter,HashRouter,BrowserRouter, Route, Link } from 'react-router-dom';
 
 const PageOne =()=>{
   return <div>Page 1-One
@@ -22,14 +21,14 @@ const PageTwo =()=>{
 function App() {
   return (
     <div className='container'>
-    <BrowserRouter>
+    <MemoryRouter>
         <div className='container' >
 
         <Route path ='/' exact component={PageOne} />
         <Route path='/pagetwo' component={PageTwo} />
         </div>
 
-    </BrowserRouter>
+    </MemoryRouter>
       
     </div>
   );
