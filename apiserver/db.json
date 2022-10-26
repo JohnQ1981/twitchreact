@@ -4,6 +4,11 @@
       "title": "MyFirst Stream",
       "description": "Awesome Stream.",
       "id": 1
+    },
+    {
+      "title": "Gamers Stream",
+      "description": "Gaming stream for kids.",
+      "id": 2
     }
   ]
 }
