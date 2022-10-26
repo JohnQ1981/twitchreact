@@ -1,37 +1,55 @@
-import React from 'react';
+import React from "react";
 
-class GoogleAuth extends React.Component{
+class GoogleAuth extends React.Component {
+  state = { isSignedIn: null };
 
-    state ={isSignedIn: null};
-
-    componentDidMount(){
-        window.gapi.load('client:auth2', ()=>{
-            window.gapi.client.init({
-                clientId: '938999981500-46qafojo8c0hlpvlbmfp4sm8ko0vknhh.apps.googleusercontent.com',
-                scope: 'email',
-                plugin_name: "streamy",
-            }).then(()=>{
-                this.auth = window.gapi.auth2.getAuthInstance();
-                this.setState({isSignedIn : this.auth.isSignedIn.get()});
-            });
+  componentDidMount() {
+    window.gapi.load("client:auth2", () => {
+      window.gapi.client
+        .init({
+          clientId:
+            "938999981500-46qafojo8c0hlpvlbmfp4sm8ko0vknhh.apps.googleusercontent.com",
+          scope: "email",
+          plugin_name: "streamy",
+        })
+        .then(() => {
+          this.auth = window.gapi.auth2.getAuthInstance();
+          this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+          this.auth.isSignedIn.listen(this.onAuthChange);
         });
+    });
+  }
+
+  onAuthChange = () => {
+    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+  };
+
+
+onSignIn=()=>{
+    this.auth.signIn();
+}
+ onSignOut=()=>{
+    this.auth.signOut();
+ }
+  renderAuthButton() {
+    if (this.state.isSignedIn === null) {
+      return null;
+    } else if (this.state.isSignedIn) {
+
+      return <div> <button onClick={this.onSignOut}
+
+      className="ui red google button">
+        <i className="google icon" /> Sign Out
+      </button></div>;
+    } else {
+      return <div><button onClick={this.onSignIn}
+      className="ui red google button">
+      <i className="google icon" /> Sign In with Google
+    </button></div>;
     }
-
-
-    renderAuthButton(){
-        if(this.state.isSignedIn===null){
-            return <div>Not sure if we are signed in:(</div>
-
-        }
-        else if (this.state.isSignedIn){
-            return <div> I am signed in!</div>
-        }else{
-            return <div>I am not signed in.</div>
-        }
-    }
-    render(){
-        return <div>{this.renderAuthButton()}</div>
-    }
-
-};
-export default GoogleAuth
+  }
+  render() {
+    return <div>{this.renderAuthButton()}</div>;
+  }
+}
+export default GoogleAuth;
