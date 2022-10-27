@@ -1,15 +1,15 @@
-name: deploy-widgets
+name: deploy-twitchapp
 
 on:
   push:
     branches:
       - main
     paths:
-      - "packages/widgets/**"
+      - "mytwitchapp/**"
 
 defaults:
   run:
-    working-directory: packages/widgets
+    working-directory: mytwitchapp
 
 jobs:
   build:
