@@ -4,7 +4,7 @@ const StreamDelete =()=>{
 
 
     return (
-        <div className='container' >StreamDelete!!</div>
+        <div className='container' >StreamDelete!</div>
     )
 
 };
